@@ -23,17 +23,6 @@ def test_shuttle_ode():
     prob.model = ShuttleODE(num_nodes=5)
 
     prob.setup(check=False, force_alloc_complex=True)
-    # prob["aerodynamics.alpha"] = 5
-    # prob["heating.alpha"] = 5
-    # prob["aerodynamics.v"] = 2500
-    # prob["heating.v"] = 2500
-    # prob["eom.v"] = 2500
-    # prob["eom.gamma"] = -5*np.pi/180
-    # prob["eom.theta"] = 40*np.pi/180 
-    # prob["eom.beta"] = -5*np.pi/180
-    # prob["eom.h"] = 80000
-    # prob["atmosphere.h"] = 80000
-    # prob["eom.psi"] = 45*np.pi/180
 
     prob.run_model()
 

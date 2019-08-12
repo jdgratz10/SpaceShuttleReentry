@@ -12,7 +12,6 @@ phase0 = Phase(ode_class=ShuttleODE, transcription=GaussLobatto(num_segments=20,
 traj.add_phase(name="phase0", phase=phase0)
 
 phase0.set_time_options(fix_initial=True, units="s", duration_ref=200)#, duration_ref=2000, duration_bounds=(50, 3000)
-# phase0.set_time_options(fix_initial=True, fix_duration=True, units="s")
 
 phase0.set_state_options("h", fix_initial=True, fix_final=True, units="ft", rate_source="hdot", targets=["h"], lower=0)#, ref=260000, defect_ref=260000, ref0=80000
 phase0.set_state_options("gamma", fix_initial=True, fix_final=True, units="rad", rate_source="gammadot", targets=["gamma"], lower=-89.*np.pi/180, upper=89.*np.pi/180)
@@ -34,14 +33,10 @@ prob.driver.options["maxiter"] = 100
 
 prob.setup(check=True)
 
-# prob["traj.phase0.controls:beta"] = -84*np.pi/180
-# prob["traj.phase0.controls:alpha"] = 30*np.pi/180
-# prob["traj.phase0.t_duration"] = 60
-
 prob.set_val("traj.phase0.states:h", phase0.interpolate(ys=[260000, 80000], nodes="state_input"), units="ft")
 prob.set_val("traj.phase0.states:gamma", phase0.interpolate(ys=[-1*np.pi/180, -5*np.pi/180], nodes="state_input"), units="rad")
-prob.set_val("traj.phase0.states:phi", phase0.interpolate(ys=[0, 80*np.pi/180], nodes="state_input"), units="rad")
-prob.set_val("traj.phase0.states:psi", phase0.interpolate(ys=[90*np.pi/180, 20*np.pi/180], nodes="state_input"), units="rad")
+prob.set_val("traj.phase0.states:phi", phase0.interpolate(ys=[0, 75*np.pi/180], nodes="state_input"), units="rad")
+prob.set_val("traj.phase0.states:psi", phase0.interpolate(ys=[90*np.pi/180, 10*np.pi/180], nodes="state_input"), units="rad")
 prob.set_val("traj.phase0.states:theta", phase0.interpolate(ys=[0, 25*np.pi/180], nodes="state_input"), units="rad")
 prob.set_val("traj.phase0.states:v", phase0.interpolate(ys=[25600, 2500], nodes="state_input"), units="ft/s")
 
@@ -132,13 +127,6 @@ plt.title("Heating rate over Time")
 plt.xlabel("Time points")
 plt.ylabel("Heating Rate (BTU/ft**2/s")
 
-# plt.plot(prob.get_val("traj.phase0.timeseries.time", units="s"), prob.get_val("traj.phase0.timeseries.controls:q", units="Btu/ft**2/s"), "ro", label="Solution")
-# plt.plot(sim_out.get_val("traj.phase0.timeseries.time", units="s"), sim_out.get_val("traj.phase0.timeseries.controls:q", units="Btu/ft**2/s"), "b-", label="Simulation")
-# plt.title("Heating rate over Time")
-# plt.xlabel("Time (s)")
-# plt.ylabel("Heating Rate (Btu/ft**2/s")
-# plt.legend()
-
 plt.show()
 
-print(prob.get_val("traj.phase0.collocation_constraint.defects:v"))
+# print(prob.get_val("traj.phase0.collocation_constraint.defects:v"))

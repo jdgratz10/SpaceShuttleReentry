@@ -75,9 +75,6 @@ def test_aerodynamics():
     prob.model = Aerodynamics(num_nodes=5)
 
     prob.setup(check=False, force_alloc_complex=True)
-    prob["alpha"] = 5
-    prob["v"] = 2500
-    prob["rho"] = 8.248946098e-5
 
     prob.run_model()
 
