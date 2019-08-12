@@ -32,7 +32,7 @@ class AerodynamicHeating(ExplicitComponent):
         c_1 = -.19213774e-1
         c_2 = .21286289e-3
         c_3 = -.10117249e-5
-        q_r = 17700*rho**.5*(.0001*v)**3.07#
+        q_r = 17700*rho**.5*(.0001*v)**3.07
         q_a = c_0 + c_1*alpha + c_2*alpha**2 + c_3*alpha**3
 
         outputs["q"] = q_r*q_a
@@ -47,11 +47,11 @@ class AerodynamicHeating(ExplicitComponent):
         c_2 = .21286289e-3
         c_3 = -.10117249e-5
 
-        q_r = 17700*rho**.5*(.0001*v)**3.07#
+        q_r = 17700*rho**.5*(.0001*v)**3.07
         q_a = c_0 + c_1*alpha + c_2*alpha**2 + c_3*alpha**3
 
-        J["q", "rho"] = q_a*.5*17700*rho**(-.5)*(.0001*v)**3.07#
-        J["q", "v"] = q_a*3.07*17700*rho**.5*(.0001)**3.07*v**2.07#
+        J["q", "rho"] = q_a*.5*17700*rho**(-.5)*(.0001*v)**3.07
+        J["q", "v"] = q_a*3.07*17700*rho**.5*(.0001)**3.07*v**2.07
         J["q", "alpha"] = q_r*(c_1 + 2*c_2*alpha + 3*c_3*alpha**2)
 
 def test_heating():
