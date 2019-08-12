@@ -57,9 +57,9 @@ prob.cleanup()
 case_reader = CaseReader("reentry.sql")
 
 driver_cases = case_reader.list_cases("driver")
-# last_case = case_reader.get_case(driver_cases[-1])
-# final_constraints = last_case.get_constraints()
-# final_q = final_constraints["traj.phase0.path_constraints.path:q"]
+last_case = case_reader.get_case(driver_cases[-1])
+final_constraints = last_case.get_constraints()
+final_q = final_constraints["traj.phase0.path_constraints.path:q"]
 
 plt.figure(0)
 plt.plot(prob.get_val("traj.phase0.timeseries.time", units="s"), prob.get_val("traj.phase0.timeseries.controls:alpha", units="deg"), "ro", label="Solution")
@@ -125,11 +125,11 @@ plt.xlabel("Time (s)")
 plt.ylabel("Velocity (ft/s)")
 plt.legend()
 
-# plt.figure(8)
-# plt.plot(np.arange(len(final_q)), final_q)
-# plt.title("Heating rate over Time")
-# plt.xlabel("Time points")
-# plt.ylabel("Heating Rate (BTU/ft**2/s")
+plt.figure(8)
+plt.plot(np.arange(len(final_q)), final_q)
+plt.title("Heating rate over Time")
+plt.xlabel("Time points")
+plt.ylabel("Heating Rate (BTU/ft**2/s")
 
 plt.show()
 
