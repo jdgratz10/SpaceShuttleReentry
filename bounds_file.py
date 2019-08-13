@@ -1,3 +1,12 @@
+#This file only needs to be run once, but is left in the repository
+#for reference. ubs is a dictionary of the upper bounds on the states,
+#controls, and time duration for the dymos model with which this
+#file corresponds. lbs is the same dictionary but for lower bounds.
+#The file saves these dictionaries as pickle files, and optionally 
+#(currently commented out) prints out the dictionaries. These 
+#dictionaries are accepted as inputs to the autoscale method in
+#dymos (method is currently developmental).
+
 import pickle
 import numpy as np
 
