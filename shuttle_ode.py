@@ -1,8 +1,8 @@
 from openmdao.api import Problem, Group
-from heating import AerodynamicHeating
-from flight_dynamics import FlightDynamics
-from aerodynamics import Aerodynamics
-from atmosphere import Atmosphere
+from heating_comp import AerodynamicHeating
+from flight_dynamics_comp import FlightDynamics
+from aerodynamics_comp import Aerodynamics
+from atmosphere_comp import Atmosphere
 import numpy as np
 
 class ShuttleODE(Group):
